@@ -1,7 +1,8 @@
 #!/usr/bin/python
 
 ######################################################################
-# Created on 4 August 2015
+# Created on 4 August 2015 
+# Created by Egbie Anderson
 #
 # Option 1
 # A simple script that automates the process of writing
