@@ -75,11 +75,6 @@ class InputOutput(Format):
             my_file = f.read()
         return my_file
 
-    def write(self, new_file, old_file):
-
-        with open(new_file, "a") as f:
-            f.write(old_file)
-
     def create_new_file(self, file_name):
         """Create an empty file"""
 
