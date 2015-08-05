@@ -35,7 +35,7 @@ class Time(object):
 class Description(object):
 	"""The description of the script"""
 
-	def get_author(self, author='Egbierel Uku'):
+	def get_author(self, author='Egbie Anderson'):
 		"""return the author name"""
 		return author
 
@@ -133,7 +133,9 @@ def create_template(user_obj):
 	user_obj._add_string(author)
 	user_obj._add_string(ver)
 	user_obj._add_string(border.get_border(1))
-	user_obj._add_string(ver)
+	user_obj._add_string(border.get_border(1))
+	user_obj._add_string("{} File description ".format(border.get_border(1)))
+	user_obj._add_string(border.get_border(1))
 
 	if not val:
 		user_obj._add_string("{} {}".format(border.get_border(1), script_description))
