@@ -47,8 +47,9 @@ class Description(object):
 
 		if len(message) < 80:
 			return False, message
-
-		while len(message) > 85:
+                
+                # Ensure that the length of the message does not exceed 80 chars for each new line
+		while len(message) > 80:
 			text.append(message[:80])
 			message = message[80:]
 		text.append(message[0:])
