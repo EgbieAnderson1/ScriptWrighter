@@ -67,10 +67,10 @@ class InputOutput(Format):
 	def __init__(self, file_name, loc):
 		
 		self._file_location = os.path.join(loc, file_name)      # createe a file path
-		self._create_file(self._file_location)                  # create a file at that location
-		self._add_string('#!/usr/bin/python')                   # add a shebang to the top of the file
-		self._add_string('\n')
-		self._add_string(self.get_border(80))			   # add a border to the top of that page
+		self.create_new_file(self._file_location)                  # create a file at that location
+		self.add_string('#!/usr/bin/python')                   # add a shebang to the top of the file
+		self.add_string('\n')
+		self.add_string(self.get_border(80))			   # add a border to the top of that page
 
 	def load(self, file_name):
 		"""load an existing file"""
@@ -83,13 +83,13 @@ class InputOutput(Format):
 		with open(new_file, "a") as f:
 			f.write(old_file)
 
-	def _create_file(self, file_name):
+	def create_new_file(self, file_name):
 		"""Create an empty file"""
 
 		f = open(file_name, "w")
 		f.close()
 
-	def _add_string(self, string):
+	def add_string(self, string):
 		"""append text to a file"""
 		f = open(self._file_location, "a")
 		f.write(str(string))
@@ -124,7 +124,7 @@ def create_template(user_obj):
 	time = Time()
 	border = Format()
 	title, description, version = user_obj.get_user_input()
-	user_obj._add_string(border.get_border(1))
+	user_obj.add_string(border.get_border(1))
 
 	time_str = "{} Created on the {} at {} hrs".format(border.get_border(1), time.get_date(), time.get_time())
 	author   = "{} Created by : {} ".format(border.get_border(1), info.get_author())
@@ -132,24 +132,24 @@ def create_template(user_obj):
 	ver = "{} This is version : {} ".format(border.get_border(1), version)
 	val, script_description = info.get_script_description(description)
 
-	user_obj._add_string(time_str)
-	user_obj._add_string(script_name)
-	user_obj._add_string(author)
-	user_obj._add_string(ver)
-	user_obj._add_string(border.get_border(1))
-	user_obj._add_string(border.get_border(1))
-	user_obj._add_string("{} File description ".format(border.get_border(1)))
-	user_obj._add_string(border.get_border(1))
+	user_obj.add_string(time_str)
+	user_obj.add_string(script_name)
+	user_obj.add_string(author)
+	user_obj.add_string(ver)
+	user_obj.add_string(border.get_border(1))
+	user_obj.add_string(border.get_border(1))
+	user_obj.add_string("{} File description ".format(border.get_border(1)))
+	user_obj.add_string(border.get_border(1))
 
 	if not val:
-		user_obj._add_string("{} {}".format(border.get_border(1), script_description))
+		user_obj.add_string("{} {}".format(border.get_border(1), script_description))
 
 	else:
 		for text in script_description:
-			user_obj._add_string("{} {}".format(border.get_border(1), text))
+			user_obj.add_string("{} {}".format(border.get_border(1), text))
 
-	user_obj._add_string(border.get_border(1))
-	user_obj._add_string(border.get_border(80))
+	user_obj.add_string(border.get_border(1))
+	user_obj.add_string(border.get_border(80))
 
 
 def display(f):
@@ -190,8 +190,8 @@ def main():
 			old_file = user.load(options.filename)
 			user = InputOutput(options.filename, file_path)
 			create_template(user)
-			user._add_string('\n')
-			user._add_string(old_file)
+			user.add_string('\n')
+			user.add_string(old_file)
 			display(options.filename)
 	else:
 		print """
