@@ -4,8 +4,6 @@
 # Created on 4 August 2015
 #
 # Option 1
-# python script_automator.py -f <filename> -l <location for new file> 
-#
 # A simple script that automates the process of writing
 # information to the top bit of a file or script. When run the script adds
 # a title, a shebang, an author, script or file information, time it was
@@ -13,13 +11,11 @@
 #
 # Option 2
 # The script when run with the option
-# python script_automator.py -f <filepath> -c can also add the same information 
+# python createInfo.py -f <filepath> -c can also add the same information 
 # in option 1 to an existing script. It does so without altering the data 
 # that already exists within that script.
 # 
-# Do not use option 1 on an existing on file as it would delete the content
-# use option 2
-##############################################################################
+########################################################################
 
 import time
 import optparse
@@ -39,7 +35,7 @@ class Time(object):
 class Description(object):
 	"""The description of the script"""
 
-	def get_author(self, author='Egbie Anderson'):
+	def get_author(self, author='Egbierel Uku'):
 		"""return the author name"""
 		return author
 
@@ -101,7 +97,7 @@ class InputOutput(Format):
 	def get_user_input(self):
 		"""Get input from the user"""
 
-		title, script_description = False, False
+		title, script_description, version = False, False, False
 
 		while True:
 
@@ -110,10 +106,12 @@ class InputOutput(Format):
 				title = raw_input("[+] Enter name of the script : ")
 			if not script_description:
 				script_description = raw_input("[+] Enter the description for the script : ")
-			if title and script_description:
+			if not version:
+				version = raw_input("[+] Enter the version number : ")
+			if title and script_description and version:
 				break
 
-		return title, script_description
+		return title, script_description, version
 			
 def create_template(user_obj):
 	"""creates the information heading for the file"""
@@ -121,18 +119,21 @@ def create_template(user_obj):
 	info = Description()
 	time = Time()
 	border = Format()
-	title, description = user_obj.get_user_input()
+	title, description, version = user_obj.get_user_input()
 	user_obj._add_string(border.get_border(1))
 
 	time_str = "{} Created on the {} at {} hrs".format(border.get_border(1), time.get_date(), time.get_time())
 	author   = "{} Created by : {} ".format(border.get_border(1), info.get_author())
 	script_name = "{} Name of the script : {} ".format(border.get_border(1), title)
+	ver = "{} This is version : {} ".format(border.get_border(1), version)
 	val, script_description = info.get_script_description(description)
 
 	user_obj._add_string(time_str)
 	user_obj._add_string(script_name)
 	user_obj._add_string(author)
+	user_obj._add_string(ver)
 	user_obj._add_string(border.get_border(1))
+	user_obj._add_string(ver)
 
 	if not val:
 		user_obj._add_string("{} {}".format(border.get_border(1), script_description))
@@ -181,10 +182,10 @@ def main():
 			Script usage:
 
 			option 1 for new files
-			python script_automator.py -f <filename> -l <location for new file>
+			python createInfo.py -f <filename> -l <location for new file>
 
 			option 2
-			python script_automator.py -f <file path> -c
+			python createInfo.py -f <file path> -c
 		"""
 
 if __name__ == "__main__":
