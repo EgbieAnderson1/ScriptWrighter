@@ -15,6 +15,9 @@
 # in option 1 to an existing script. It does so without altering the data 
 # that already exists within that script.
 # 
+#
+# Do not run option 1 with the files that have existing data inside this 
+# will caused the data to be over written. Use option 2 instead
 ########################################################################
 
 import webbrowser
