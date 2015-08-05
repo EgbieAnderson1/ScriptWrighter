@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 ######################################################################
-# Created on 4 August 2015 by Egbie Anderson
+# Created on 4 August 2015 by Egbie 
 #
 # Option 1
 # A simple script that automates the process of writing
@@ -15,8 +15,6 @@
 # in option 1 to an existing script. It does so without altering the data 
 # that already exists within that script.
 # 
-# Do not use option 1 with a file that contains data it will delete the
-# data instead use option 2
 ########################################################################
 
 import webbrowser
@@ -133,9 +131,9 @@ def create_template(user_obj):
 	ver = "{} This is version : {} ".format(border.get_border(1), version)
 	val, script_description = info.get_script_description(description)
 
-	user_obj.add_string(time_str)
-	user_obj.add_string(script_name)
 	user_obj.add_string(author_name)
+	user_obj.add_string(script_name.title())
+	user_obj.add_string(time_str)
 	user_obj.add_string(ver)
 	user_obj.add_string(border.get_border(1))
 	user_obj.add_string(border.get_border(1))
