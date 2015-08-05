@@ -1,8 +1,7 @@
 #!/usr/bin/python
 
 ######################################################################
-# Created on 4 August 2015 
-# Created by Egbie Anderson
+# Created on 4 August 2015
 #
 # Option 1
 # A simple script that automates the process of writing
@@ -18,6 +17,8 @@
 # 
 ########################################################################
 
+import webbrowser
+from time import sleep
 import time
 import optparse
 import os
@@ -149,6 +150,14 @@ def create_template(user_obj):
 	user_obj._add_string(border.get_border(80))
 
 
+def display(f):
+	"""display the file to the user"""
+
+	print "[+] Opening file please wait .."
+	sleep(0.5)
+	webbrowser.open(f)
+	print "[+] Done, have a nice day\n"
+
 def main():
 
 	parser = optparse.OptionParser("usage -f <filename> -l <dir location> or -f <file_path> -c" )
@@ -166,6 +175,7 @@ def main():
 
 		user = InputOutput(options.filename, options.location)
 		create_template(user) # create the template
+		display(user._file_location)
 
 	# Enables information to be added to the top of a file or script that already
 	# has information without overiding the information that already exists in the file.
@@ -180,6 +190,7 @@ def main():
 			create_template(user)
 			user._add_string('\n')
 			user._add_string(old_file)
+			display(options.filename)
 	else:
 		print """
 			Script usage:
