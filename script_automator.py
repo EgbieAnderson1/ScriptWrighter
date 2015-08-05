@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 ######################################################################
-# Created on 4 August 2015 by Egbie Anderson
+# Created on 4 August 2015
 #
 # Option 1
 # A simple script that automates the process of writing
@@ -116,7 +116,9 @@ class InputOutput(Format):
 		return title, script_description, version
 			
 def create_template(user_obj):
-	"""creates the information heading for the file"""
+	""" create_template(obj) -> return (None)
+	creates the information heading for the file
+	"""
 
 	info = Description()
 	time = Time()
