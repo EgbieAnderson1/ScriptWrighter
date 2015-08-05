@@ -4,6 +4,8 @@
 # Created on 4 August 2015
 #
 # Option 1
+# python script_automator.py -f <filename> -l <location for new file> 
+#
 # A simple script that automates the process of writing
 # information to the top bit of a file or script. When run the script adds
 # a title, a shebang, an author, script or file information, time it was
@@ -15,7 +17,9 @@
 # in option 1 to an existing script. It does so without altering the data 
 # that already exists within that script.
 # 
-########################################################################
+# Do not use option 1 on an existing on file as it would delete the content
+# use option 2
+##############################################################################
 
 import time
 import optparse
