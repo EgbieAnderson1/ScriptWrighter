@@ -3,8 +3,6 @@
 ######################################################################
 # Created on 4 August 2015
 #
-# Created by Egbie Anderson
-#
 # Option 1
 # A simple script that automates the process of writing
 # information to the top bit of a file or script. When run the script adds
@@ -38,10 +36,11 @@ class Description(object):
 	"""The description of the script"""
 
 	def get_author(self, author='Egbie Anderson'):
+		"""return the author name"""
 		return author
 
 	def get_script_description(self, message):
-		"""prints a message to the screen"""
+		"""Get a description for the file"""
 		text = []
 
 		if len(message) < 80:
@@ -72,6 +71,7 @@ class InputOutput(Format):
 		self._add_string(self.get_border(80))			   # add a border to the top of that page
 
 	def load(self, file_name):
+		"""load an existing file"""
 		with open(file_name) as f:
 			my_file = f.read()
 		return my_file
@@ -82,7 +82,7 @@ class InputOutput(Format):
 			f.write(old_file)
 
 	def _create_file(self, file_name):
-		"""Allows a file to be created"""
+		"""Create an empty file"""
 
 		f = open(file_name, "w")
 		f.close()
@@ -112,6 +112,7 @@ class InputOutput(Format):
 		return title, script_description
 			
 def create_template(user_obj):
+	"""creates the information heading for the file"""
 
 	info = Description()
 	time = Time()
