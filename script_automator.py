@@ -11,8 +11,8 @@
 #
 # Option 2
 # The script when run with the option
-# python createInfo.py -f <filepath> -c can also add the same information 
-# in option 1 to an existing script. It does so without altering the data 
+# python createInfo.py -f <filepath> -c also add the same information 
+# in option 1 to an existing script. But it does so without altering the data 
 # that already exists within that script.
 # 
 #
