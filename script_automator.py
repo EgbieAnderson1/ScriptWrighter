@@ -11,7 +11,7 @@
 #
 # Option 2
 # The script when run with the option
-# python createInfo.py -f <filepath> -c can also add the same information 
+# python createInfo.py -f <filepath> -a can also add the same information 
 # in option 1 to an existing script. It does so without altering the data 
 # that already exists within that script.
 # 
@@ -200,7 +200,7 @@ def main():
 			python createInfo.py -f <filename> -l <location for new file>
 
 			option 2
-			python createInfo.py -f <file path> -c
+			python createInfo.py -f <file path> -a
 		"""
 
 if __name__ == "__main__":
