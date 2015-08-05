@@ -11,13 +11,10 @@
 #
 # Option 2
 # The script when run with the option
-# python createInfo.py -f <filepath> -c also add the same information 
-# in option 1 to an existing script. But it does so without altering the data 
+# python createInfo.py -f <filepath> -c can also add the same information 
+# in option 1 to an existing script. It does so without altering the data 
 # that already exists within that script.
 # 
-#
-# Do not run option 1 with the files that have existing data inside this 
-# will caused the data to be over written. Use option 2 instead
 ########################################################################
 
 import webbrowser
@@ -40,18 +37,14 @@ class Time(object):
 class Description(object):
 	"""The description of the script"""
 
-	def get_author(self, author='Egbie Anderson'):
-		"""return the author name"""
-		return author
-
 	def get_script_description(self, message):
 		"""Get a description for the file"""
 		text = []
 
 		if len(message) < 80:
 			return False, message
-                
-                # Ensure that the length of the message does not exceed 80 chars for each new line
+
+		# ensure that length of the characters does not exceed 80 chars
 		while len(message) > 80:
 			text.append(message[:80])
 			message = message[80:]
@@ -103,21 +96,23 @@ class InputOutput(Format):
 	def get_user_input(self):
 		"""Get input from the user"""
 
-		title, script_description, version = False, False, False
+		title, script_description, version, author = False, False, False, False
 
 		while True:
 
 			print
+			if not author:
+				author = raw_input("[+] Enter the author for the file : ")
 			if not title:
 				title = raw_input("[+] Enter name of the script : ")
 			if not script_description:
 				script_description = raw_input("[+] Enter the description for the script : ")
 			if not version:
 				version = raw_input("[+] Enter the version number : ")
-			if title and script_description and version:
+			if title and script_description and version and author:
 				break
 
-		return title, script_description, version
+		return title, script_description, version, author
 			
 def create_template(user_obj):
 	""" create_template(obj) -> return (None)
@@ -127,18 +122,18 @@ def create_template(user_obj):
 	info = Description()
 	time = Time()
 	border = Format()
-	title, description, version = user_obj.get_user_input()
+	title, description, version, author = user_obj.get_user_input()
 	user_obj.add_string(border.get_border(1))
 
 	time_str = "{} Created on the {} at {} hrs".format(border.get_border(1), time.get_date(), time.get_time())
-	author   = "{} Created by : {} ".format(border.get_border(1), info.get_author())
+	author_name = "{} Created by : {} ".format(border.get_border(1), author)
 	script_name = "{} Name of the script : {} ".format(border.get_border(1), title)
 	ver = "{} This is version : {} ".format(border.get_border(1), version)
 	val, script_description = info.get_script_description(description)
 
 	user_obj.add_string(time_str)
 	user_obj.add_string(script_name)
-	user_obj.add_string(author)
+	user_obj.add_string(author_name)
 	user_obj.add_string(ver)
 	user_obj.add_string(border.get_border(1))
 	user_obj.add_string(border.get_border(1))
