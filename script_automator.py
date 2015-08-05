@@ -15,6 +15,8 @@
 # in option 1 to an existing script. It does so without altering the data 
 # that already exists within that script.
 # 
+# Do not option 1 with a file that contains data it will delete the
+# data instead use option 2
 ########################################################################
 
 import webbrowser
