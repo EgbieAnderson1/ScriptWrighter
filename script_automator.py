@@ -59,7 +59,7 @@ class Format(object):
         return "#" * num
         
 class FileInputOutput(Format):
-    """Class controls what goes in and out of a file"""
+    """Class handles anything related to files"""
 
     def __init__(self, file_name, loc):
         
@@ -109,8 +109,8 @@ def get_user_input():
 
     return title, script_description, version, author
             
-def create_template(user_obj):
-    """ create_template(obj) -> return (None)
+def create_header(user_obj):
+    """ create_header(obj) -> return (None)
     creates the information heading for the file
     """
 
@@ -175,7 +175,7 @@ def main():
             exit(0)
 
         user = FileInputOutput(options.filename, options.location)
-        create_template(user) # create the template
+        create_header(user) # create the template
         display(user._file_location)
 
     # option 2
@@ -189,7 +189,7 @@ def main():
             old_file = user.load(options.filename)
             user.add_string('[+] Successful copied the content of the old file')
             user = FileInputOutput(options.filename, file_path)
-            create_template(user)
+            create_header(user)
             user.add_string('\n')
             user.add_string(old_file)
             print "[+] Successful added header info to existing file."
