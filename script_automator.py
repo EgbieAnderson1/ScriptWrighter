@@ -61,13 +61,16 @@ class Format(object):
 class FileInputOutput(Format):
     """Class handles anything related to files"""
 
-    def __init__(self, file_name, loc):
+    def __init__(self, file_name, loc, text_file=False):
         
         self._file_location = os.path.join(loc, file_name)      # createe a file path
-        self.create_new_file(self._file_location)                  # create a file at that location
-        self.add_string('#!/usr/bin/python')                   # add a shebang to the top of the file
-        self.add_string('\n')
-        self.add_string(self.draw_border(80))			   # add a border to the top of that page
+        self.create_new_file(self._file_location)               # create a file at that location
+        
+        # if the file is a text file do not add shebang to file, new line or draw border
+        if not text_file:
+            self.add_string('#!/usr/bin/python')               # add a shebang to the top of the file
+            self.add_string('\n')
+            self.add_string(self.draw_border(80))			   # add a border to the top of that page
 
     def load(self, file_name):
         """load an existing file"""
@@ -123,7 +126,7 @@ def create_header(user_obj):
     # create a string with following information
     time_str = "{} Created on the {} at {} hrs".format(border.draw_border(1), time.get_date(), time.get_time())
     author_name = "{} Created by : {} ".format(border.draw_border(1), author)
-    script_name = "{} Name of the script : {} ".format(border.draw_border(1), title)
+    script_name = "{} Name of the program : {} ".format(border.draw_border(1), title)
     ver = "{} This is version : {} ".format(border.draw_border(1), version)
     val, script_description = info.get_script_description(description)
 
@@ -185,7 +188,7 @@ def main():
         if os.path.exists(options.filename):
 
             file_path = os.path.dirname(options.filename)
-            user = FileInputOutput("log.txt", file_path)
+            user = FileInputOutput("log.txt", file_path, True)
             old_file = user.load(options.filename)
             user.add_string('[+] Successful copied the content of the old file')
             user = FileInputOutput(options.filename, file_path)
